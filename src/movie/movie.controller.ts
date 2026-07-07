@@ -1,9 +1,13 @@
-import { Controller, Delete, Get, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Patch, Post } from '@nestjs/common';
+import { CreateMovieDto } from './dtos/create-movie.dto';
+import { UpdateMovieDto } from './dtos/update-movie.dto';
 
 @Controller('movies')
 export class MovieController {
   @Post()
-  createMovie() {}
+  createMovie(@Body() createMovieDto: CreateMovieDto) {
+    console.log(createMovieDto);
+  }
 
   @Get()
   getMovies() {}
@@ -12,7 +16,9 @@ export class MovieController {
   getMovieById() {}
 
   @Patch(':id')
-  updateMovie() {}
+  updateMovie(@Body() updateMovieDto: UpdateMovieDto) {
+    console.log(updateMovieDto);
+  }
 
   @Patch(':id/poster')
   uploadPoster() {}
