@@ -10,12 +10,18 @@ import {
 import { RegisterDto } from './dtos/register.dto';
 import { LoginDto } from './dtos/login.dto';
 import { UpdatePasswordDto } from './dtos/update-password.dto';
+import { AuthService } from './auth.service';
 
 @Controller('auth')
 export class AuthController {
+  constructor(private readonly authService: AuthService) {}
+
   @Post('register')
-  register(@Body() registerDto: RegisterDto) {
-    console.log(registerDto);
+  async register(
+    @Body() registerDto: RegisterDto
+  ): Promise<{ message: string }> {
+    await this.authService.register(registerDto);
+    return { message: 'Registered successfully' };
   }
 
   @HttpCode(HttpStatus.OK)
