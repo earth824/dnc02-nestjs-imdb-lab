@@ -41,7 +41,8 @@ export class AuthService {
 
     const access_token = await this.accessTokenService.sign({
       sub: user.id.toString(),
-      email: user.email
+      email: user.email,
+      role: user.role
     });
 
     return { access_token };

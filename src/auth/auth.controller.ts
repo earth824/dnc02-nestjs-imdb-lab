@@ -11,11 +11,13 @@ import { RegisterDto } from './dtos/register.dto';
 import { LoginDto } from './dtos/login.dto';
 import { UpdatePasswordDto } from './dtos/update-password.dto';
 import { AuthService } from './auth.service';
+import { Public } from '../common/decorators/public.decorator';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  @Public()
   @Post('register')
   async register(
     @Body() registerDto: RegisterDto
@@ -24,6 +26,7 @@ export class AuthController {
     return { message: 'Registered successfully' };
   }
 
+  @Public()
   @HttpCode(HttpStatus.OK)
   @Post('login')
   async login(@Body() loginDto: LoginDto): Promise<{ access_token: string }> {

@@ -9,4 +9,8 @@ export class AccessTokenService {
   sign(payload: AccessTokenPayload): Promise<string> {
     return this.jwtService.signAsync(payload);
   }
+
+  verify(token: string): Promise<AccessTokenPayload> {
+    return this.jwtService.verifyAsync(token);
+  }
 }

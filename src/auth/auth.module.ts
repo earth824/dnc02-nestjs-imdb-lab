@@ -9,6 +9,7 @@ import { AccessTokenService } from './access-token.service';
 @Module({
   imports: [UserModule, HashModule, JwtModule],
   controllers: [AuthController],
-  providers: [AuthService, AccessTokenService]
+  providers: [AuthService, AccessTokenService],
+  exports: [AccessTokenService]
 })
 export class AuthModule {}
